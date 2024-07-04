@@ -12,28 +12,22 @@ const LoginPage = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const res = await signIn('credentials', {
-      redirect: false, // Bu değeri false yaparak yanıtı manuel olarak işleyebilirsiniz
+      redirect: true, 
       username,
       password,
       callbackUrl: '/',
     });
 
-    console.log(res); // Yanıtı konsola yazdırarak kontrol edin
+    console.log(res); 
 
-    if (res?.ok) {
-      router.push('/');
 
-    } else {
-      alert('Login failed: ' + res?.error);
-      console.error(res?.error); // Hata mesajını konsola yazdırarak daha fazla bilgi edinin
-    }
 
   };
 if(session){
   console.log(session)
 return (
   <>
-  <h1>Hello {session.user.firstName}  {session.user.lastName}</h1>
+  <h1>Hello {session.user.firstName}  {session.user.lastName} {session.user.role}</h1>
   <button onClick={()=>signOut()}>SingOut</button>
   </>
 )

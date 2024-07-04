@@ -50,6 +50,14 @@ const handler = NextAuth({
       return token;
     },
     async session({ session, token }) {
+      const role=
+    await  fetch('https://dummyjson.com/auth/me', {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token.token}`, 
+        }, 
+      })
+      .then(res => res.json());
       session.user = {
         id: token.id,
         username: token.username,
@@ -58,6 +66,7 @@ const handler = NextAuth({
         lastName: token.lastName,
         gender: token.gender,
         image: token.image,
+        role:role.role,
         token: token.token,
         refreshToken: token.refreshToken
       };
