@@ -1,7 +1,6 @@
-const i18nConfig = {
+module.exports = {
   locales: ['az','ru','en'],
   defaultLocale: 'az',
   prefixDefault:true
 };
 
-module.exports = i18nConfig;

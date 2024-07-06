@@ -3,7 +3,7 @@ import "./globals.css";
 import Provider from "./Provider";
 import i18nConfig from '@/i18nConfig';
 import { dir } from 'i18next';
-import LanguageChanger from "@/components/LanguageChanger";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -19,7 +19,7 @@ export default function RootLayout({ children, params: { locale } }) {
       <body className={inter.className}>
     
 <Provider>
-<LanguageChanger/>
+
         {children}
 </Provider>
      

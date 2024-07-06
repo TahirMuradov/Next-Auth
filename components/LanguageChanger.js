@@ -6,11 +6,13 @@ import { useTranslation } from 'react-i18next';
 import i18nConfig from '@/i18nConfig';
 
 export default function LanguageChanger() {
-  const { i18n } = useTranslation();
+  debugger;
+  const {i18n} = useTranslation()
   const currentLocale = i18n.language;
+
   const router = useRouter();
   const currentPathname = usePathname();
-console.log(i18n)
+console.log(document.cookie)
   const handleChange = e => {
     debugger;
     const newLocale = e.target.value;
@@ -21,7 +23,7 @@ console.log(newLocale)
     date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
     const expires = date.toUTCString();
     document.cookie = `NEXT_LOCALE=${newLocale};expires=${expires};path=/`;
-console.log(`cookie->${document.cookie}` )
+console.log(`cookie->${document.cookie.valueOf()}` )
     // redirect to the new locale path
     if (
       currentLocale === i18nConfig.defaultLocale &&
