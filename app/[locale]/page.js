@@ -2,6 +2,7 @@
 import LanguageChanger from "@/components/LanguageChanger";
 import initTranslations from "../i18n";
 import TranslationsProvider from '@/components/TranslationsProvider';
+import Login from "@/components/Login";
 
 const i18nNamespaces = ['home'];
 export default async function Home({ params: { locale } }) {
@@ -17,7 +18,7 @@ export default async function Home({ params: { locale } }) {
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
 
      <h1>{t('hello')}</h1>
-   
+   <Login/>
     </main>
     </TranslationsProvider>
  

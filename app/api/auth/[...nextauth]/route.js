@@ -13,14 +13,16 @@ const handler = NextAuth({
         password: { label: "Password", type: "password" }
       },
       async authorize(credentials, req) {
+    //karlFashionApi
         try {
-          const res = await fetch('https://dummyjson.com/auth/login', {
+          process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+          const res = await fetch('https://localhost:7036/api/Auth/Login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-              username: credentials.username,
-              password: credentials.password,
-              expiresInMins: 30, // optional, defaults to 60
+              'EmailOrUsername': credentials.username,
+              'Password': credentials.password,
+             
             })
           });
 
@@ -50,25 +52,27 @@ const handler = NextAuth({
       return token;
     },
     async session({ session, token }) {
-      const role=
-    await  fetch('https://dummyjson.com/auth/me', {
-        method: 'GET',
-        headers: {
-          'Authorization': `Bearer ${token.token}`, 
-        }, 
-      })
-      .then(res => res.json());
-      session.user = {
-        id: token.id,
-        username: token.username,
-        email: token.email,
-        firstName: token.firstName,
-        lastName: token.lastName,
-        gender: token.gender,
-        image: token.image,
-        role:role.role,
-        token: token.token,
-        refreshToken: token.refreshToken
+      console.log(token)
+      // const role=
+    // await  fetch('https://dummyjson.com/auth/me', {
+    //     method: 'GET',
+    //     headers: {
+    //       'Authorization': `Bearer ${token.token}`, 
+    //     }, 
+    //   })
+    //   .then(res => res.json());
+      session.user.data = {
+        // id: token.id,
+        // username: token.username,
+        // email: token.email,
+        // firstName: token.firstName,
+        // lastName: token.lastName,
+        // gender: token.gender,
+        // image: token.image,
+        // role:token.role,
+        token: token.data.accessToken,
+        refreshToken: token.data.refreshToken,
+        
       };
       return session;
     },

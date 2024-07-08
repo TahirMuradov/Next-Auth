@@ -10,15 +10,17 @@ const LoginPage = () => {
   const router = useRouter();
   const { data: session } = useSession();
   const handleSubmit = async (event) => {
+    debugger;
     event.preventDefault();
+    
     const res = await signIn('credentials', {
-      redirect: true, 
+    
       username,
       password,
-      callbackUrl: '/',
+     
     });
 
-    console.log(res); 
+  
 
 
 
