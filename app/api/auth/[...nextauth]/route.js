@@ -3,10 +3,11 @@ import CredentialsProvider from "next-auth/providers/credentials";
 
 const handler = NextAuth({
   secret:"SecretTokenKeysaasafdsqfndwgiungjingwi",
-  session: {
-    strategy: 'jwt',
-      },
+  // session: {
+  //   strategy: 'jwt',
+  //     },
   providers: [
+    process.env.VERCEL_ENV === "preview",
     CredentialsProvider({
       name: "Credentials",
       credentials: {
