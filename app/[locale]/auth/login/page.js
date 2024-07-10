@@ -29,7 +29,7 @@ if(session){
   console.log(session)
 return (
   <>
-  <h1>Hello {session.user.firstName}  {session.user.lastName} {session.user.role}</h1>
+  <h1>Hello {session.user.data.firstName}  {session.user.data.username} {session.user.data.role}</h1>
   <button onClick={()=>signOut()}>SingOut</button>
   </>
 )

@@ -2,9 +2,10 @@ import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 const handler = NextAuth({
+  secret:"SecretTokenKeysaasafdsqfndwgiungjingwi",
   session: {
     strategy: 'jwt',
-  },
+      },
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -16,13 +17,13 @@ const handler = NextAuth({
     //karlFashionApi
         try {
           process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
-          const res = await fetch('https://localhost:7036/api/Auth/Login', {
+          const res = await fetch('https://dummyjson.com/auth/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-              'EmailOrUsername': credentials.username,
-              'Password': credentials.password,
-             
+              username:credentials.username /*'emilys'*/,
+              password:credentials.password /*'emilyspass'*/,
+              expiresInMins: 30,             
             })
           });
 
@@ -53,25 +54,25 @@ const handler = NextAuth({
     },
     async session({ session, token }) {
       console.log(token)
-      // const role=
-    // await  fetch('https://dummyjson.com/auth/me', {
-    //     method: 'GET',
-    //     headers: {
-    //       'Authorization': `Bearer ${token.token}`, 
-    //     }, 
-    //   })
-    //   .then(res => res.json());
+      const role=
+    await  fetch('https://dummyjson.com/auth/me', {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token.token}`, 
+        }, 
+      })
+      .then(res => res.json());
       session.user.data = {
-        // id: token.id,
-        // username: token.username,
-        // email: token.email,
-        // firstName: token.firstName,
-        // lastName: token.lastName,
-        // gender: token.gender,
-        // image: token.image,
-        // role:token.role,
-        token: token.data.accessToken,
-        refreshToken: token.data.refreshToken,
+        id: token.id,
+        username: token.username,
+        email: token.email,
+        firstName: token.firstName,
+        lastName: token.lastName,
+        gender: token.gender,
+        image: token.image,
+        role:role.role,
+        token: token.token,
+        refreshToken: token.refreshToken
         
       };
       return session;
