@@ -2,12 +2,12 @@ import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 const handler = NextAuth({
-  secret:"SecretTokenKeysaasafdsqfndwgiungjingwi",
+  secret:process.env._API_KEY,
   // session: {
   //   strategy: 'jwt',
   //     },
   providers: [
-    process.env.VERCEL_ENV === "preview",
+    // process.env.VERCEL_ENV === "preview",
     CredentialsProvider({
       name: "Credentials",
       credentials: {
