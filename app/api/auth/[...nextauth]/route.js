@@ -16,6 +16,22 @@ const handler = NextAuth({
       },
       async authorize(credentials, req) {
     //karlFashionApi
+    // const username = '11187086';
+    // const password = '60-dayfreetrial';
+    // const base64Credentials = btoa(`${username}:${password}`);
+    
+    // const response = await fetch('http://takhir-001-site1.gtempurl.com/api/Auth/Login', {
+    //   method: 'POST',   
+    //       headers: { 'Content-Type': 'application/json' },
+    //     body:
+    //       JSON.stringify({
+    //               EmailOrUsername:'tahir@mail.ru',
+    //         Password:'4575865T@hir'
+    //       })
+        
+    // });
+    // const data = await response.json();
+    // console.log(data);
         try {
           process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
           const res = await fetch('https://dummyjson.com/auth/login', {
